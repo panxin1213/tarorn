@@ -4,8 +4,7 @@ name: Assemble Android Release
 # 触发工作流程的事件
 on:
   push:
-    branches: [ master ]
-    tags: [ v* ]
+    tags: [ v*, r*, a* ]
   pull_request:
     branches: [ master ]
 
@@ -14,23 +13,23 @@ on:
 # 工作流环境变量
 env:
   # 应用的application_id
-  APP_ID: com.tarorn
+  APP_ID: ${{secrets.APP_ID}}
   # 应用名称
-  APP_NAME: Taro Demo
+  APP_NAME: Taro
   # 打包类型
   BUILD_TYPE: release
   # 版本名称
-  VERSION_NAME: 1.0.0
+  VERSION_NAME: 1.8.2
   # 版本号
-  VERSION_CODE: 10
+  VERSION_CODE: 18200
   # 密钥库文件
-  KEYSTORE_FILE: debug.keystore
+  KEYSTORE_FILE: release.keystore
   # 密钥库口令
-  KEYSTORE_PASSWORD: android
+  KEYSTORE_PASSWORD: ${{secrets.RELEASE_KEYSTORE_PASSWORD}}
   # 密钥库别名
-  KEYSTORE_KEY_ALIAS: androiddebugkey
+  KEYSTORE_KEY_ALIAS: android
   # 密钥库别名口令
-  KEYSTORE_KEY_PASSWORD: android
+  KEYSTORE_KEY_PASSWORD: ${{secrets.RELEASE_KEYSTORE_PASSWORD}}
 
 # 工作流作业
 jobs:
